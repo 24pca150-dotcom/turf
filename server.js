@@ -17,14 +17,24 @@ const server = http.createServer(app);
 let io;
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://your-user-app.netlify.app",
+    "https://your-owner-app.netlify.app"
+  ],
+  credentials: true
+}));
 
 // socket initialization
 export const initIO = (httpServer) => {
   io = new Server(httpServer, {
     cors: {
-      origin: "*", // Adjust as per your security needs
+      origin: [
+        "https://your-user-app.netlify.app",
+        "https://your-owner-app.netlify.app"
+      ],
       methods: ["GET", "POST"],
+      credentials: true
     },
   });
 
@@ -71,7 +81,7 @@ const startServer = async () => {
 
     // If database connection is successful, start the server
     server.listen(port, () => {
-      console.log(`Server is running on port http://localhost:${port}`);
+      console.log(`Server is running on port ${port}`);
     });
   } catch (error) {
     console.error("Server failed to start:", error);
