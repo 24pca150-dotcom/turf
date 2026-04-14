@@ -19,9 +19,9 @@ let io;
 app.use(express.json());
 app.use(cors({
   origin: [
-    "https://your-user-app.netlify.app",
-    "https://your-owner-app.netlify.app"
-  ],
+    "https://turfsportowner.netlify.app",
+    "https://turfsportuser.netlify.app/"
+    ],
   credentials: true
 }));
 
@@ -30,8 +30,8 @@ export const initIO = (httpServer) => {
   io = new Server(httpServer, {
     cors: {
       origin: [
-        "https://your-user-app.netlify.app",
-        "https://your-owner-app.netlify.app"
+        "https://turfsportowner.netlify.app",
+        "https://turfsportuser.netlify.app/"
       ],
       methods: ["GET", "POST"],
       credentials: true
